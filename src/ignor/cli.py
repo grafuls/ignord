@@ -1,23 +1,7 @@
-"""
-Module that contains the command line app.
-
-Why does this file exist, and why not put this in __main__?
-
-  You might be tempted to import things from __main__ later, but that will cause
-  problems: the code will get executed twice:
-
-  - When you run `python -mignor` python will execute
-    ``__main__.py`` as a script. That means there will not be any
-    ``ignor.__main__`` in ``sys.modules``.
-  - When you import __main__ it will get executed again (as a module) because
-    there"s no ``ignor.__main__`` in ``sys.modules``.
-
-  Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
-"""
 import argparse
 import os
-
 import requests
+import json
 
 parser = argparse.ArgumentParser(description="Generate a gitignore file for a specific language.")
 parser.add_argument("language", nargs='?', help="The language of the project you want to generate the gitignore file for.")
@@ -26,41 +10,63 @@ parser.add_argument("-l", "--list", help="List the languages that are supported.
 
 class Ignor:
     def __init__(self):
-        try:
-            self.languages = self.list_languages()
-        except Exception as ex:
-            print(ex)
-            return 1
+        self.root = self.get_root()
+        self.languages = self.get_languages()
+          
+    def get_root(self):
+        url = "https://api.github.com/repos/github/gitignore/branches/main"
+        response = requests.get(url)
+        if response.status_code == 200:
+            response_json = response.json()
+            sha = response_json.get("commit").get("commit").get("tree").get("sha")
+            root = self.get_tree(sha)
+        else:
+            raise Exception("Could not get file structure.")
+        return root
+      
+    def get_languages(self):
+        root = os.path.dirname(__file__)
+        path = os.path.join(root, ".ignors")
+        if os.path.exists(path) and os.stat(path).st_size > 0:
+            with open(path, "r") as _file:
+                langs = json.load(_file)
+                return langs
+        else:
+            languages = self.traverse_tree_append(self.root)
+            with open(path, "w") as _file:
+                json.dump(languages, _file)
+            return languages
+          
+    
+    def get_tree(self, sha):
+        url_tree = f"https://api.github.com/repos/github/gitignore/git/trees/{sha}"
+        response_tree = requests.get(url_tree)
+        if response_tree.status_code == 200:
+            response_tree_json = response_tree.json()
+            tree = response_tree_json.get("tree")
+        else:
+            raise Exception("Could not get tree.")
+        return tree
 
-    @staticmethod
-    def get_gitignore(language, url):
+    def get_gitignore(self, language, url):
         headers = {"Accept": "application/vnd.github.raw"}
         response = requests.get(url, headers=headers)
         if response.status_code == 200:
             return response.content
         else:
-            raise Exception("Could not download gitignore file for language %s" % language)
-
-    def list_languages(self):
-        url = "https://api.github.com/repos/github/gitignore/branches/main"
-        response = requests.get(url)
-        languages = []
-        if response.status_code == 200:
-            response_json = response.json()
-            sha = response_json.get("commit").get("commit").get("tree").get("sha")
-            url_tree = f"https://api.github.com/repos/github/gitignore/git/trees/{sha}"
-            response_tree = requests.get(url_tree)
-            response_tree_json = response_tree.json()
-            tree = response_tree_json.get("tree")
-            for language in tree:
-                path = language.get("path")
-                url = language.get("url")
-                if ".gitignore" in path:
-                    languages.append({"name": path.split(".")[0], "url": url})
-
-        else:
-            raise Exception("Could not get a list of supported languages.")
-
+            raise Exception("Could not download gitignore file for language %s." % language)
+        
+    def traverse_tree_append(self, tree, languages=None):
+        languages = languages if languages else []
+        for language in tree:
+            path = language.get("path")
+            url = language.get("url")
+            if language.get("type") == "tree":
+                child_tree = self.get_tree(language.get("sha"))
+                languages = self.traverse_tree_append(child_tree, languages)
+                continue
+            if ".gitignore" in path:
+                languages.append({"name": path.split(".")[0], "url": url})
         return languages
 
     @staticmethod
@@ -72,7 +78,11 @@ class Ignor:
 
 def main(args=None):
     args = parser.parse_args(args=args)
-    ignor = Ignor()
+    try:
+        ignor = Ignor()
+    except Exception as ex:
+        print(ex)
+        return 1
     if args.list:
         for lang in ignor.languages:
             try:
