@@ -1,4 +1,3 @@
-
 from ignor.cli import main
 
 

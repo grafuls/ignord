@@ -15,11 +15,13 @@ Why does this file exist, and why not put this in __main__?
   Also see (1) from http://click.pocoo.org/5/setuptools/#setuptools-integration
 """
 import argparse
-import requests
 import os
+
+import requests
 
 parser = argparse.ArgumentParser(description="Generate a gitignore file for a specific language.")
 parser.add_argument("language", help="The language of the project you want to generate the gitignore file for.", default="python")
+
 
 def get_gitignore(language):
     url = "https://raw.githubusercontent.com/github/gitignore/master/%s.gitignore" % language.capitalize()
@@ -29,14 +31,15 @@ def get_gitignore(language):
     else:
         raise Exception("Could not download gitignore file for language %s" % language)
 
+
 def save_gitignore(language, content):
     path = os.path.join(os.getcwd(), ".gitignore")
     with open(path, "wb") as f:
         f.write(content)
+
 
 def main(args=None):
     args = parser.parse_args(args=args)
     content = get_gitignore(args.language)
     save_gitignore(args.language, content)
     print("Gitignore file generated for language %s" % args.language)
-
