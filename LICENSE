@@ -1,5 +1,5 @@
 
-ignor - ignor is a Python CLI application that generates git ignore files for a specific language.
+ignord - ignord is a Python CLI application that generates git ignore files for a specific language.
 Copyright (c) 2023, Gonzalo Rafuls.
 
 This program is free software: you can redistribute it and/or modify

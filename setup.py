@@ -15,14 +15,14 @@ setup(
     name="ignord",
     version="0.1.1",
     license="LGPL-3.0-only",
-    description="ignor is a Python CLI application that generates git ignore files for a specific language.",
+    description="ignord is a Python CLI application that generates git ignore files for a specific language.",
     long_description="{}\n{}".format(
         re.compile("^.. start-badges.*^.. end-badges", re.M | re.S).sub("", read("README.rst")),
         re.sub(":[a-z]+:`~?(.*?)`", r"``\1``", read("CHANGELOG.rst")),
     ),
     author="Gonzalo Rafuls",
     author_email="grafuls@gmail.com",
-    url="https://github.com/grafuls/python-ignor",
+    url="https://github.com/grafuls/ignord",
     packages=find_packages("src"),
     package_dir={"": "src"},
     py_modules=[path.stem for path in Path("src").glob("*.py")],
@@ -53,9 +53,9 @@ setup(
         "Topic :: Utilities",
     ],
     project_urls={
-        "Documentation": "https://python-ignor.readthedocs.io/",
-        "Changelog": "https://python-ignor.readthedocs.io/en/latest/changelog.html",
-        "Issue Tracker": "https://github.com/grafuls/python-ignor/issues",
+        "Documentation": "https://ignord.readthedocs.io/",
+        "Changelog": "https://ignord.readthedocs.io/en/latest/changelog.html",
+        "Issue Tracker": "https://github.com/grafuls/ignord/issues",
     },
     keywords=[
         # eg: "keyword1", "keyword2", "keyword3",
@@ -71,7 +71,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "ignor = ignor.cli:main",
+            "ignord = ignord.cli:main",
         ]
     },
 )

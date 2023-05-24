@@ -1,4 +1,4 @@
-ignor
+ignord
 =====
 
 .. testsetup::
