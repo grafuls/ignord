@@ -2,11 +2,11 @@
 Usage
 =====
 
-To use ignor from cli to get a list of supported languages::
+To use ignord from cli to get a list of supported languages::
 
-	ignor --list
+	ignord --list
 
 
 To generate the `.gitignore` file for the specific language::
 
-	ignor nasaspecsintact
+	ignord nasaspecsintact

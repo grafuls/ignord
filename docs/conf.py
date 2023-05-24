@@ -13,7 +13,7 @@ extensions = [
 ]
 source_suffix = ".rst"
 master_doc = "index"
-project = "ignor"
+project = "ignord"
 year = "2023"
 author = "Gonzalo Rafuls"
 copyright = f"{year}, {author}"
@@ -22,8 +22,8 @@ version = release = "0.0.0"
 pygments_style = "trac"
 templates_path = ["."]
 extlinks = {
-    "issue": ("https://github.com/grafuls/python-ignor/issues/%s", "#"),
-    "pr": ("https://github.com/grafuls/python-ignor/pull/%s", "PR #"),
+    "issue": ("https://github.com/grafuls/ignord/issues/%s", "#"),
+    "pr": ("https://github.com/grafuls/ignord/pull/%s", "PR #"),
 }
 # on_rtd is whether we are on readthedocs.org
 on_rtd = os.environ.get("READTHEDOCS", None) == "True"

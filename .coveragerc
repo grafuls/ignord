@@ -6,7 +6,7 @@ source =
 [run]
 branch = true
 source =
-    ignor
+    ignord
     tests
 parallel = true
 

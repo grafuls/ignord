@@ -15,39 +15,39 @@ Overview
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
         | |commits-since|
-.. |docs| image:: https://readthedocs.org/projects/python-ignor/badge/?style=flat
-    :target: https://python-ignor.readthedocs.io/
+.. |docs| image:: https://readthedocs.org/projects/ignord/badge/?style=flat
+    :target: https://ignord.readthedocs.io/
     :alt: Documentation Status
 
-.. |github-actions| image:: https://github.com/grafuls/python-ignor/actions/workflows/github-actions.yml/badge.svg
+.. |github-actions| image:: https://github.com/grafuls/ignord/actions/workflows/github-actions.yml/badge.svg
     :alt: GitHub Actions Build Status
-    :target: https://github.com/grafuls/python-ignor/actions
+    :target: https://github.com/grafuls/ignord/actions
 
-.. |codecov| image:: https://codecov.io/gh/grafuls/python-ignor/branch/main/graphs/badge.svg?branch=main
+.. |codecov| image:: https://codecov.io/gh/grafuls/ignord/branch/main/graphs/badge.svg?branch=main
     :alt: Coverage Status
-    :target: https://app.codecov.io/github/grafuls/python-ignor
+    :target: https://app.codecov.io/github/grafuls/ignord
 
-.. |version| image:: https://img.shields.io/pypi/v/ignor.svg
+.. |version| image:: https://img.shields.io/pypi/v/ignord.svg
     :alt: PyPI Package latest release
-    :target: https://pypi.org/project/ignor
+    :target: https://pypi.org/project/ignord
 
-.. |wheel| image:: https://img.shields.io/pypi/wheel/ignor.svg
+.. |wheel| image:: https://img.shields.io/pypi/wheel/ignord.svg
     :alt: PyPI Wheel
-    :target: https://pypi.org/project/ignor
+    :target: https://pypi.org/project/ignord
 
-.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/ignor.svg
+.. |supported-versions| image:: https://img.shields.io/pypi/pyversions/ignord.svg
     :alt: Supported versions
-    :target: https://pypi.org/project/ignor
+    :target: https://pypi.org/project/ignord
 
-.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/ignor.svg
+.. |supported-implementations| image:: https://img.shields.io/pypi/implementation/ignord.svg
     :alt: Supported implementations
-    :target: https://pypi.org/project/ignor
+    :target: https://pypi.org/project/ignord
 
 
 
 .. end-badges
 
-ignor is a Python CLI application that generates git ignore files for a specific language.
+`ignord` is a Python CLI application that generates git ignore files for a specific language.
 
 * Free software: GNU Lesser General Public License v3 (LGPLv3)
 
@@ -56,18 +56,18 @@ Installation
 
 ::
 
-    pip install ignor
+    pip install ignord
 
 You can also install the in-development version with::
 
-    pip install https://github.com/grafuls/python-ignor/archive/main.zip
+    pip install https://github.com/grafuls/ignord/archive/main.zip
 
 
 Documentation
 =============
 
 
-https://python-ignor.readthedocs.io/
+https://ignord.readthedocs.io/
 
 
 Development

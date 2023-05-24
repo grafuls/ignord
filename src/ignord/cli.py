@@ -8,7 +8,7 @@ parser.add_argument("language", nargs='?', help="The language of the project you
 parser.add_argument("-l", "--list", help="List the languages that are supported.", action="store_true", required=False)
 
 
-class Ignor:
+class Ignord:
     def __init__(self):
         self.root = self.get_root()
         self.languages = self.get_languages()
@@ -79,26 +79,26 @@ class Ignor:
 def main(args=None):
     args = parser.parse_args(args=args)
     try:
-        ignor = Ignor()
+        ignord = Ignord()
     except Exception as ex:
         print(ex)
         return 1
     if args.list:
-        for lang in ignor.languages:
+        for lang in ignord.languages:
             try:
                 print(lang["name"])
             except AttributeError:
                 pass
         return 0
     elif args.language:
-        for lang in ignor.languages:
+        for lang in ignord.languages:
             if args.language.lower() in lang["name"].lower():
                 try:
-                    content = ignor.get_gitignore(lang["name"], lang["url"])
+                    content = ignord.get_gitignore(lang["name"], lang["url"])
                 except Exception as ex:
                     print(ex)
                     return 1
-                ignor.save_gitignore(content)
+                ignord.save_gitignore(content)
                 print("Gitignore file generated for language %s" % lang["name"])
                 return 0
         print(f"Language {args.language} not supported.")
