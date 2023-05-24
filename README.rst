@@ -43,10 +43,6 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/ignor
 
-.. |commits-since| image:: https://img.shields.io/github/commits-since/grafuls/python-ignor/v0.0.0.svg
-    :alt: Commits since latest release
-    :target: https://github.com/grafuls/python-ignor/compare/v0.0.0...main
-
 
 
 .. end-badges
