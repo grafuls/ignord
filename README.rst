@@ -14,7 +14,6 @@ Overview
         | |codecov|
     * - package
       - | |version| |wheel| |supported-versions| |supported-implementations|
-        | |commits-since|
 .. |docs| image:: https://readthedocs.org/projects/ignord/badge/?style=flat
     :target: https://ignord.readthedocs.io/
     :alt: Documentation Status
@@ -43,11 +42,9 @@ Overview
     :alt: Supported implementations
     :target: https://pypi.org/project/ignord
 
-
-
 .. end-badges
 
-`ignord` is a Python CLI application that generates git ignore files for a specific language.
+`ignord` is a Python CLI application that generates git ignore files for a specific language with support for over 250 languages.
 
 * Free software: GNU Lesser General Public License v3 (LGPLv3)
 
@@ -65,7 +62,6 @@ You can also install the in-development version with::
 
 Documentation
 =============
-
 
 https://ignord.readthedocs.io/
 
