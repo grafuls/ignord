@@ -13,7 +13,7 @@ def read(*names, **kwargs):
 
 setup(
     name="ignord",
-    version="0.1.3",
+    version="0.1.4",
     license="LGPL-3.0-only",
     description="ignord is a Python CLI application that generates git ignore files for a specific language with support for over 250 languages.",
     long_description="{}\n{}".format(
